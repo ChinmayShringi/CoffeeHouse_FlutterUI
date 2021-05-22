@@ -11,17 +11,22 @@ class ColdBrew extends StatefulWidget {
 class _ColdBrewState extends State<ColdBrew> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return MediaQuery.removePadding(
         removeTop: true,
         context: context,
         child: ListView(children: [
+          SizedBox(
+            height: 10,
+          ),
           buildListItem(
-              'assets/coffee4.png', '150', ColorPalette().secondSlice),
-          buildListItem('assets/coffee2.png', '200', ColorPalette().firstSlice)
+              'assets/coffee4.png', '150', ColorPalette().secondSlice, size),
+          buildListItem(
+              'assets/coffee2.png', '200', ColorPalette().firstSlice, size)
         ]));
   }
 
-  buildListItem(String imgPath, String price, Color bgColor) {
+  buildListItem(String imgPath, String price, Color bgColor, var size) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
@@ -31,16 +36,16 @@ class _ColdBrewState extends State<ColdBrew> {
       child: Stack(
         children: [
           Container(
-            height: 250.0,
+            height: 300.0,
             width: 250.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
                 color: Colors.transparent),
           ),
           Positioned(
-            top: 0.0,
+            top: 70.0,
             child: Container(
-              height: 200.0,
+              height: 210.0,
               width: 250.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
@@ -50,18 +55,18 @@ class _ColdBrewState extends State<ColdBrew> {
           ),
           Positioned(
             top: 0.0,
-            right: 2.0,
+            right: 0,
             child: Hero(
               tag: imgPath,
               child: Container(
-                height: 150.0,
-                width: 150.0,
+                height: 170.0,
+                width: 170.0,
                 child: Image(image: AssetImage(imgPath), fit: BoxFit.scaleDown),
               ),
             ),
           ),
           Positioned(
-            top: 20.0,
+            top: 90.0,
             left: 15.0,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -77,7 +82,8 @@ class _ColdBrewState extends State<ColdBrew> {
                 style: TextStyle(
                     fontFamily: 'BigShldr',
                     color: Colors.white,
-                    fontSize: 40.0),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 45.0),
               ),
               SizedBox(height: 20.0),
               Text(
@@ -85,6 +91,7 @@ class _ColdBrewState extends State<ColdBrew> {
                 style: TextStyle(
                     fontFamily: 'BigShldr',
                     color: Color(0xFF23163D),
+                    fontWeight: FontWeight.bold,
                     fontSize: 27.0),
               ),
               SizedBox(height: 2.0),
@@ -100,6 +107,7 @@ class _ColdBrewState extends State<ColdBrew> {
                               '65 reviews',
                               style: TextStyle(
                                   fontFamily: 'BigShldr',
+                                  fontWeight: FontWeight.w500,
                                   color: Colors.white,
                                   fontSize: 15.0),
                             ),
@@ -127,7 +135,8 @@ class _ColdBrewState extends State<ColdBrew> {
                                 Text(
                                   'Add',
                                   style: TextStyle(
-                                      fontFamily: 'BigShldr',
+                                      // fontFamily: 'BigShldr',
+                                      fontWeight: FontWeight.bold,
                                       color: Color(0xFF23163D),
                                       fontSize: 15.0),
                                 ),

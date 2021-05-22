@@ -67,19 +67,22 @@ class _HomePageState extends State<HomePage> {
                 width: 225.0,
                 child: TextField(
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5.0),
-                        borderSide:
-                            BorderSide(color: Colors.grey.withOpacity(0.4)),
-                      ),
-                      contentPadding: EdgeInsets.only(top: 10.0, left: 10.0),
-                      hintText: 'search...',
-                      hintStyle: TextStyle(
-                          fontFamily: 'BigShldr',
-                          color: Color(0xFFA59FB0),
-                          fontSize: 15.0),
-                      suffixIcon: Icon(Icons.search,
-                          color: Colors.grey.withOpacity(0.4))),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                      borderSide:
+                          BorderSide(color: Colors.grey.withOpacity(0.4)),
+                    ),
+                    contentPadding: EdgeInsets.only(top: 10.0, left: 10.0),
+                    hintText: 'search...',
+                    hintStyle: TextStyle(
+                        fontFamily: 'BigShldr',
+                        color: Colors.grey.withOpacity(0.4),
+                        fontSize: 15.0),
+                    suffixIcon: Icon(
+                      Icons.search,
+                      color: Colors.grey.withOpacity(0.4),
+                    ),
+                  ),
                 ),
               )
             ])),
