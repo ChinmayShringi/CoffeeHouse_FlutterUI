@@ -19,24 +19,24 @@ class _ColdBrewState extends State<ColdBrew> {
           SizedBox(
             height: 10,
           ),
-          buildListItem(
+          _buildCard(
               'assets/coffee4.png', '150', ColorPalette().secondSlice, size),
-          buildListItem(
+          _buildCard(
               'assets/coffee2.png', '200', ColorPalette().firstSlice, size)
         ]));
   }
 
-  buildListItem(String imgPath, String price, Color bgColor, var size) {
+  _buildCard(String imgPath, String price, Color bgColor, var size) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>
-                CoffeeDetails(imgPath: imgPath, headerColor: bgColor)));
+                CoffeeDetails(img: imgPath, itemColor: bgColor)));
       },
       child: Stack(
         children: [
           Container(
-            height: 300.0,
+            height: 290.0,
             width: 250.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
@@ -45,7 +45,7 @@ class _ColdBrewState extends State<ColdBrew> {
           Positioned(
             top: 70.0,
             child: Container(
-              height: 210.0,
+              height: 200.0,
               width: 250.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25.0),
@@ -83,7 +83,8 @@ class _ColdBrewState extends State<ColdBrew> {
                     fontFamily: 'BigShldr',
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 45.0),
+                    letterSpacing: 4,
+                    fontSize: 40.0),
               ),
               SizedBox(height: 20.0),
               Text(

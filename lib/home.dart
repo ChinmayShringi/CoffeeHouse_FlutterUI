@@ -10,19 +10,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final colorPalette = ColorPalette();
-
   var _selectedOption = 0;
-
-  // List allOptions = [BlackGold(), ColdBrew(), Nescafe(), McCafe(), GoldBrew()];
-  List allOptions = [
+  List navs = [
     ColdBrew(),
-    Text('asd'),
-    Text('asd'),
-    Text('asd'),
-    Text('asd')
+    Text('Yes THESE NAVBARS DO WORK!'),
+    ColdBrew(),
+    Text('Yes THESE NAVBARS DO WORK!'),
+    ColdBrew(),
   ];
 
-  List isSelected = [true, false, false, false, false];
+  List selIndx = [true, false, false, false, false];
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +64,12 @@ class _HomePageState extends State<HomePage> {
                 width: 225.0,
                 child: TextField(
                   decoration: InputDecoration(
+                    enabledBorder: const OutlineInputBorder(
+                      borderSide:
+                          const BorderSide(color: Colors.grey, width: 0.0),
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
-                      borderSide:
-                          BorderSide(color: Colors.grey.withOpacity(0.4)),
                     ),
                     contentPadding: EdgeInsets.only(top: 10.0, left: 10.0),
                     hintText: 'search...',
@@ -86,79 +85,75 @@ class _HomePageState extends State<HomePage> {
                 ),
               )
             ])),
-        buildSideNavigator(),
+        _buildSideNav(),
         Positioned(
             top: (size.height / 3.5) + 0,
             left: (size.width / 5) + 25.0,
             child: Container(
                 height: size.height - ((size.height / 3) + 0.0),
                 width: size.width - ((size.width / 5) + 40.0),
-                child: allOptions[_selectedOption]))
+                child: navs[_selectedOption]))
       ],
     ));
   }
 
-  buildSideNavigator() {
+  _buildSideNav() {
     return Positioned(
-        top: 75.0,
-        child: RotatedBox(
-            quarterTurns: 3,
-            child: Container(
-                width: MediaQuery.of(context).size.height - 100.0,
-                height: MediaQuery.of(context).size.width / 5,
-                child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      buildOption('Black Gold', 0),
-                      buildOption('Cold Brew', 1),
-                      buildOption('Nescafe', 2),
-                      buildOption('McCafe', 3),
-                      buildOption('Gold Brew', 4),
-                    ]))));
+      top: 75.0,
+      child: RotatedBox(
+        quarterTurns: 3,
+        child: Container(
+          width: MediaQuery.of(context).size.height - 100.0,
+          height: MediaQuery.of(context).size.width / 5,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.height / 100,
+            ),
+            _buildNavOpt('Black Gold', 0),
+            _buildNavOpt('Cold Brew', 1),
+            _buildNavOpt('Nescafe', 2),
+            _buildNavOpt('McCafe', 3),
+            _buildNavOpt('Gold Brew', 4),
+          ]),
+        ),
+      ),
+    );
   }
 
-  buildOption(String title, int index) {
+  _buildNavOpt(String title, int index) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        isSelected[index]
-            ? Container(
-                height: 8.0,
-                width: 8.0,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Color(0xFF23163D)))
-            : Container(
-                height: 8.0,
-                width: 8.0,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle, color: Colors.transparent)),
+        Container(
+          height: 8.0,
+          width: 8.0,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: selIndx[index] ? Color(0xFF23163D) : Colors.transparent,
+          ),
+        ),
         SizedBox(height: 5.0),
         GestureDetector(
             onTap: () {
               setState(() {
                 _selectedOption = index;
-                isOptionSelected(index);
+                isOptSel(index);
               });
             },
-            child: Text(
-              title,
-              style: isSelected[index]
-                  ? TextStyle(
-                      fontFamily: 'BigShldr',
-                      color: Color(0xFF23163D),
-                      fontSize: 18.0)
-                  : TextStyle(
-                      fontFamily: 'BigShldr',
-                      color: Color(0xFFA59FB0),
-                      fontSize: 17.0),
-            ))
+            child: Text(title,
+                style: TextStyle(
+                    fontFamily: 'BigShldr',
+                    color:
+                        selIndx[index] ? Color(0xFF23163D) : Color(0xFFA59FB0),
+                    fontSize: 18.0)))
       ],
     );
   }
 
-  isOptionSelected(index) {
-    var previousIndex = isSelected.indexOf(true);
-    isSelected[index] = true;
-    isSelected[previousIndex] = false;
+  isOptSel(index) {
+    var previousIndex = selIndx.indexOf(true);
+    selIndx[index] = true;
+    selIndx[previousIndex] = false;
   }
 }

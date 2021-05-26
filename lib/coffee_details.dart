@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 class CoffeeDetails extends StatefulWidget {
-  final imgPath, headerColor;
-
-  CoffeeDetails({this.imgPath, this.headerColor});
-
+  final img, itemColor;
+  CoffeeDetails({this.img, this.itemColor});
   @override
   _CoffeeDetailsState createState() => _CoffeeDetailsState();
 }
@@ -14,126 +12,130 @@ class CoffeeDetails extends StatefulWidget {
 class _CoffeeDetailsState extends State<CoffeeDetails> {
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery.of(context).size.height;
-    var screenWidth = MediaQuery.of(context).size.width;
-
+    var size = MediaQuery.of(context).size;
     return Scaffold(
         body: Stack(children: [
       Container(
-          height: screenHeight, width: screenWidth, color: Colors.transparent),
-      Container(
-          height: screenHeight,
-          width: screenWidth,
+          height: size.height,
+          width: size.width,
           color: ColorPalette().leftBarColor),
       Container(
-          height: screenHeight / 2,
-          width: screenWidth,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30.0),
-                bottomLeft: Radius.circular(30.0),
-              ),
-              color: Colors.white)),
+        height: size.height / 1.95,
+        width: size.width,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(30.0),
+              bottomLeft: Radius.circular(30.0),
+            ),
+            color: Colors.white),
+      ),
       Container(
-          height: (screenHeight / 4 + 25.0),
-          width: screenWidth,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30.0),
-                bottomLeft: Radius.circular(30.0),
-              ),
-              color: Colors.white.withOpacity(0.6))),
-      Container(
-          height: (screenHeight / 4 + 25.0),
-          width: screenWidth,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(30.0),
-                bottomLeft: Radius.circular(30.0),
-              ),
-              color: widget.headerColor.withOpacity(0.9))),
+        height: (size.height / 3.3),
+        width: size.width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(30.0),
+            bottomLeft: Radius.circular(30.0),
+          ),
+          color: widget.itemColor.withOpacity(0.9),
+        ),
+      ),
       Positioned(
-          top: 35.0,
-          left: 20.0,
-          child: Icon(
+        top: 35.0,
+        left: 20.0,
+        child: IconButton(
+          icon: Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
-          )),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
       Positioned(
-          top: 35.0,
-          right: 20.0,
-          child: Icon(
-            Feather.shopping_bag,
-            color: Colors.white,
-          )),
+        top: 35.0,
+        right: 20.0,
+        child: Icon(
+          Feather.shopping_bag,
+          color: Colors.white,
+        ),
+      ),
       Positioned(
-          top: (screenHeight / 4 - 100.0),
-          left: screenWidth / 4,
-          child: Hero(
-              tag: widget.imgPath,
-              child: Image(
-                  image: AssetImage(widget.imgPath),
-                  height: 175.0,
-                  width: 175.0,
-                  fit: BoxFit.cover))),
+        top: (size.height / 12),
+        left: size.width / 2 - size.height / 6.6,
+        child: Hero(
+          tag: widget.img,
+          child: Image(
+              image: AssetImage(widget.img),
+              height: size.height / 3.3,
+              width: size.height / 3.3,
+              fit: BoxFit.cover),
+        ),
+      ),
       Positioned(
-          top: (screenHeight / 4) + 85.0,
-          left: screenWidth / 7,
-          child: Container(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+        top: (size.height / 2.5),
+        left: size.width / 2 - 120,
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Grady\s COLD BREW',
+                style: TextStyle(
+                    fontFamily: 'BigShldr',
+                    color: Color(0xFF23163D),
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1,
+                    fontSize: 22.0),
+              ),
+              SizedBox(height: 10.0),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Icon(Feather.user),
+                SizedBox(width: 10.0),
                 Text(
-                  'Grady\s COLD BREW',
+                  '1.5k',
                   style: TextStyle(
                       fontFamily: 'BigShldr',
-                      color: Color(0xFF23163D),
-                      fontSize: 24.0),
+                      color: ColorPalette().firstSlice,
+                      fontSize: 17.0),
                 ),
-                SizedBox(height: 10.0),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(Feather.user),
-                  SizedBox(width: 10.0),
-                  Text(
-                    '1.5k',
-                    style: TextStyle(
-                        fontFamily: 'BigShldr',
-                        color: ColorPalette().firstSlice,
-                        fontSize: 20.0),
-                  ),
-                  SizedBox(width: 15.0),
-                  Container(width: 1.0, height: 20.0, color: Colors.grey),
-                  SizedBox(width: 15.0),
-                  //Repeat the same block as above
-                  Icon(Feather.star),
-                  SizedBox(width: 15.0),
-                  Text(
-                    '4.0',
-                    style: TextStyle(
-                        fontFamily: 'BigShldr',
-                        color: ColorPalette().firstSlice,
-                        fontSize: 20.0),
-                  ),
-                  SizedBox(width: 15.0),
-                  Container(
-                    width: 1.0,
-                    height: 20.0,
-                    color: Colors.grey,
-                  ),
-                  SizedBox(width: 15.0),
-                  Icon(Feather.anchor),
-                  SizedBox(width: 15.0),
-                  Text(
-                    'No. 1',
-                    style: TextStyle(
-                        fontFamily: 'BigShldr',
-                        color: ColorPalette().firstSlice,
-                        fontSize: 20.0),
-                  ),
-                ])
-              ]))),
+                SizedBox(width: 15.0),
+                Container(width: 1.0, height: 20.0, color: Colors.grey),
+                SizedBox(width: 15.0),
+                //Repeat the same block as above
+                Icon(Feather.star),
+                SizedBox(width: 15.0),
+                Text(
+                  '4.0',
+                  style: TextStyle(
+                      fontFamily: 'BigShldr',
+                      color: ColorPalette().firstSlice,
+                      fontSize: 17.0),
+                ),
+                SizedBox(width: 15.0),
+                Container(
+                  width: 1.0,
+                  height: 20.0,
+                  color: Colors.grey,
+                ),
+                SizedBox(width: 15.0),
+                Icon(Feather.anchor),
+                SizedBox(width: 15.0),
+                Text(
+                  'No. 1',
+                  style: TextStyle(
+                      fontFamily: 'BigShldr',
+                      color: ColorPalette().firstSlice,
+                      fontSize: 17.0),
+                ),
+              ])
+            ],
+          ),
+        ),
+      ),
       Positioned(
-          top: screenHeight / 2 + 10.0,
+          top: size.height / 1.87,
           left: 25.0,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -142,33 +144,42 @@ class _CoffeeDetailsState extends State<CoffeeDetails> {
               style: TextStyle(
                   fontFamily: 'BigShldr',
                   color: Color(0xFF23163D),
-                  fontSize: 30.0),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 34.0),
             ),
             SizedBox(height: 10.0),
             Container(
-              width: screenWidth - 40.0,
+              width: size.width - 40.0,
               child: Text(
                 'Cold brewed with chicory and a unique blend of spices for 20 hours, our concentrate is velvety-smooth and packed with flavor.',
                 style: TextStyle(
                     fontFamily: 'BigShldr',
-                    color: Color(0xFFB5ABB8),
+                    letterSpacing: 1,
+                    color: Color.fromRGBO(178, 167, 182, 1),
                     fontSize: 15.0),
               ),
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 5.0),
             Container(
-                height: 150.0,
-                width: screenWidth,
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  buildOneItem('\$65'),
+              height: 150.0,
+              width: size.width,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  _buildSimilarItem('\$65.00', size),
                   SizedBox(width: 20.0),
-                  buildOneItem('\$120.0'),
+                  _buildSimilarItem('\$120.00', size),
                   SizedBox(width: 20.0)
-                ])),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: size.height / 40,
+            ),
             Row(children: [
               Container(
                   height: 50.0,
-                  width: 225.0,
+                  width: size.width / 1.5,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: ColorPalette().buttonColor),
@@ -178,6 +189,8 @@ class _CoffeeDetailsState extends State<CoffeeDetails> {
                     style: TextStyle(
                         fontFamily: 'BigShldr',
                         color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 2,
                         fontSize: 20.0),
                   ))),
               SizedBox(width: 25.0),
@@ -194,33 +207,37 @@ class _CoffeeDetailsState extends State<CoffeeDetails> {
     ]));
   }
 
-  buildOneItem(price) {
+  _buildSimilarItem(price, size) {
     return Stack(children: [
-      Container(height: 125.0, width: 200.0, color: Colors.transparent),
+      Container(
+          height: 125.0, width: size.width / 1.6, color: Colors.transparent),
       Positioned(
-          top: 50.0,
-          child: Container(
-            height: 75.0,
-            width: 200.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15.0),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 4.0,
-                      spreadRadius: 2.0,
-                      color: Colors.grey.withOpacity(0.2))
-                ],
-                color: Colors.white),
-          )),
+        top: 50.0,
+        child: Container(
+          height: 80.0,
+          width: size.width / 1.6,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                    blurRadius: 4.0,
+                    spreadRadius: 2.0,
+                    color: Colors.grey.withOpacity(0.2))
+              ],
+              color: Colors.white),
+        ),
+      ),
       Positioned(
-          right: 5.0,
-          child: Container(
-              height: 100.0,
-              width: 100.0,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/coffee3.png'),
-                      fit: BoxFit.cover)))),
+        right: 1.0,
+        child: Container(
+          height: 120.0,
+          width: 120.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/coffee3.png'), fit: BoxFit.cover),
+          ),
+        ),
+      ),
       Positioned(
           left: 10.0,
           top: 60.0,
@@ -230,14 +247,21 @@ class _CoffeeDetailsState extends State<CoffeeDetails> {
               price,
               style: TextStyle(
                   fontFamily: 'BigShldr',
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.w700,
                   color: ColorPalette().firstSlice,
-                  fontSize: 25.0),
+                  fontSize: 30.0),
+            ),
+            SizedBox(
+              height: 5,
             ),
             Text(
               'COLD BREW KIT',
               style: TextStyle(
                   fontFamily: 'BigShldr',
                   color: Color(0xFF23163D),
+                  letterSpacing: 1,
+                  fontWeight: FontWeight.w700,
                   fontSize: 20.0),
             )
           ]))
