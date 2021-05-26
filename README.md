@@ -1,6 +1,12 @@
 # Coffee_House_FlutterUI
 
-A new Flutter project.
+
+A Flutter template. <a href="https://dribbble.com/shots/8245907-Coffee-House-App-Design/attachments/604807?mode=media">Inspiration</a>
+
+
+## Application UI
+<img src="assets/ss.png" />
+
 
 ## Getting Started
 
